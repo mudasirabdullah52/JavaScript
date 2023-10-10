@@ -36,6 +36,12 @@ function addItem(e) {
     // append this delete button to li 
     li.appendChild(deleteBtn)
 
+    // CREATE THE EDIT BUTTON
+    var editBtn = document.createElement('button');
+    editBtn.className = 'btn btn-primary btn-sm float-right edit';
+    editBtn.appendChild(document.createTextNode('edit'));
+    li.appendChild(editBtn);
+
     // append li element to itemList
 
     itemList.appendChild(li);
@@ -46,11 +52,14 @@ function addItem(e) {
 function removeItem(e) {
     if (e.target.classList.contains('delete')) {
         if (confirm('Are you sure to Delete')) {
-
             // get the parent of the target element  
             var li = e.target.parentElement;
             itemList.removeChild(li);
         }
+    }
+    else if (e.target.classList.contains('edit')) {
+        var li = e.target.parentElement;
+        li.innerHTML = 'hello Mudii';
     }
 }
 
