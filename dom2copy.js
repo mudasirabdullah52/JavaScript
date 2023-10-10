@@ -80,10 +80,9 @@ function filterItems(e) {
         // get the text of list element 
 
         var itemName = item.firstChild.textContent;
+        var discription = item.childNodes[1].textContent;
 
-        // var itemName2 = item[1].textContent;
-
-        if (itemName.toLowerCase().indexOf(text) != -1) {
+        if (itemName.toLowerCase().indexOf(text) != -1 || discription.toLowerCase().indexOf(text) != -1) {
             item.style.display = 'block';
         } else {
             item.style.display = 'none';
