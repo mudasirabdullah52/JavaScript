@@ -18,7 +18,16 @@ function addItem(e) {
     // var users = document.getElementById('users');
     // users.appendChild(li);
     // Add Data into the localStorage
-    localStorage.setItem(name, email);
-    console.log(localStorage.getItem(name));
+    var myobj = {
+        myname: name,
+        myemai: email
+
+    };
+
+    var myobj_serkauzed = JSON.stringify(myobj);
+    // console.log(myobj_serkauzed);
+    localStorage.setItem(name, myobj_serkauzed);
+    console.log(localStorage);
+
 
 }
