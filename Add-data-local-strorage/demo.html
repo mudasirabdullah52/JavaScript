@@ -54,8 +54,7 @@
 
 
     <section id="form-section">
-        <form id="inner-form">
-
+        <form id="inner-form" onsubmit="saveOnLocal(event)">
             <div id="msg"></div>
             <label for="name">Name:</label>
             <input type="text" name="name" id="name">
@@ -71,7 +70,56 @@
         </ul>
     </section>
 
-    <script src='main.js'></script>
+    <script>
+        function saveOnLocal(event) {
+            event.preventDefault();
+            const name = event.target.name.value;
+            const email = event.target.email.value;
+            const phone = event.target.phone.value;
+
+            const obj = {
+                name,
+                email,
+                phone
+            };
+
+            localStorage.clear();
+            localStorage.setItem(email, JSON.stringify(obj));
+            showOnDisplay(obj);
+
+            console.log(name);
+        }
+        function showOnDisplay(obj) {
+            const users = document.getElementById('users');
+            const li = document.createElement('li');
+            li.textContent = `${obj.name} ${obj.email} ${obj.phone}`;
+
+            const button = document.createElement('button');
+            // button.appendChild(document.createTextNode('delete'));
+            button.textContent = "Delete";
+            li.appendChild(button);
+            users.appendChild(li);
+
+            const editBtn = document.createElement('button');
+            // button.appendChild(document.createTextNode('delete'));
+            editBtn.textContent = "Edit";
+            li.appendChild(editBtn);
+            users.appendChild(li);
+
+            button.onclick = () => {
+                localStorage.removeItem(obj.email);
+                users.removeChild(li);
+            }
+
+            editBtn.onclick = () => {
+                localStorage.removeItem(obj.email);
+                users.removeChild(li);
+
+            }
+
+
+        }
+    </script>
 </body>
 
 </html>
