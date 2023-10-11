@@ -2,7 +2,9 @@ var form = document.getElementById('inner-form');
 
 
 var msg = document.getElementById('msg');
+var users = document.getElementById('users');
 
+users.addEventListener('click', removeItem);
 
 form.addEventListener('submit', addItem);
 
@@ -15,6 +17,12 @@ function addItem(e) {
     // Creating the li for user info
     var li = document.createElement('li');
     li.appendChild(document.createTextNode(name + ' ' + email + ' ' + phone));
+
+    // Add button 
+    var deleteBtn = document.createElement('button');
+    deleteBtn.className = 'delete'
+    deleteBtn.appendChild(document.createTextNode('delete'));
+    li.appendChild(deleteBtn);
 
     // getting the list and add the li to
     var users = document.getElementById('users');
@@ -33,4 +41,14 @@ function addItem(e) {
     console.log(localStorage);
 
 
+}
+function removeItem(e) {
+    e.preventDefault();
+    if (e.target.classList.contains('delete')) {
+        if (confirm('Are you sure to Delete')) {
+            // get the parent of the target element  
+            var li = e.target.parentElement;
+            users.removeChild(li);
+        }
+    }
 }
