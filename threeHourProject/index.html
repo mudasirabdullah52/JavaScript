@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: azure;
+            display: flex;
+            justify-content: center;
+
+        }
+
+        #form-section {
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+            margin: 3rem;
+            padding: 3rem;
+
+
+        }
+
+        #inner-form {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+
+
+        }
+
+        input {
+            margin: 0.5rem;
+        }
+
+        select {
+            margin: 0.5rem;
+        }
+
+
+        label {
+            margin: 0.5rem;
+        }
+
+        #btn {
+            height: 21px;
+            width: 100px;
+            text-align: center;
+            margin-left: 50px;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+
+    <section id="form-section">
+        <form id="inner-form" onsubmit="saveOnLocal(event)">
+            <div id="msg"></div>
+            <label for="expanse">Expense Amount:</label>
+            <input type="number" name="expanse" id="expanse">
+
+            <label for="description">Description</label>
+            <input type="text" name="description" id="description">
+
+            <label for="category">Category</label>
+            <select name="category" id="category">
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="mercedes">Mercedes</option>
+                <option value="audi">Audi</option>
+            </select>
+
+            <input type="submit" id="btn" value="submit">
+
+        </form>
+
+    </section>
+    <ul id="users">
+
+    </ul>
+    <script>
+        function saveOnLocal(event) {
+            event.preventDefault();
+            const expanse = event.target.expanse.value;
+            const description = event.target.description.value;
+            const category = event.target.category.value;
+
+            // console.log(expanse, description, category);
+
+            const obj = {
+                expanse,
+                description,
+                category
+            };
+
+            // localStorage.clear();
+            localStorage.setItem(expanse, JSON.stringify(obj));
+            showOnDisplay(obj)
+
+        }
+
+        function showOnDisplay(obj) {
+            const users = document.getElementById('users');
+            const li = document.createElement('li');
+            li.textContent = `${obj.expanse} ${obj.description} ${obj.category}`;
+
+            const button = document.createElement('button');
+            // button.appendChild(document.createTextNode('delete'));
+            button.textContent = "Delete";
+            li.appendChild(button);
+            users.appendChild(li);
+
+            const editBtn = document.createElement('button');
+            // button.appendChild(document.createTextNode('delete'));
+            editBtn.textContent = "Edit";
+            li.appendChild(editBtn);
+            users.appendChild(li);
+
+            button.onclick = () => {
+                localStorage.removeItem(obj.email);
+                users.removeChild(li);
+            }
+
+            editBtn.onclick = () => {
+                localStorage.removeItem(obj.email);
+                users.removeChild(li);
+                document.getElementById('expanse').value = obj.expanse;
+                document.getElementById('description').value = obj.description;
+                document.getElementById('category').value = obj.category
+
+            }
+
+
+        }
+
+
+        // // trying to get the data from local storage;
+        const users = document.getElementById('users');
+        const li = document.createElement('li');
+
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            const userData = JSON.parse(localStorage.getItem(key));
+
+            // if (userData) {
+
+            li.textContent = `${userData.expanse} ${userData.category} ${userData.description}`
+            const button = document.createElement('button');
+            // button.appendChild(document.createTextNode('delete'));
+            button.textContent = "Delete";
+            li.appendChild(button);
+            // users.appendChild(li);
+
+            const editBtn = document.createElement('button');
+            // button.appendChild(document.createTextNode('delete'));
+            editBtn.textContent = "Edit";
+            li.appendChild(editBtn);
+            users.appendChild(li);
+            button.onclick = () => {
+                localStorage.removeItem(key);
+                users.removeChild(li);
+            }
+
+            editBtn.onclick = () => {
+                localStorage.removeItem(key);
+                users.removeChild(li);
+                document.getElementById('expanse').value = userData.expanse;
+                document.getElementById('description').value = userData.description;
+                document.getElementById('category').value = userData.category
+            }
+            // }
+
+        }
+
+
+
+    </script>
+</body>
+
+</html>
