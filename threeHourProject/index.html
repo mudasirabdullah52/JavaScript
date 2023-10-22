@@ -104,39 +104,39 @@
 
         }
 
-        function showOnDisplay(obj) {
-            const users = document.getElementById('users');
-            const li = document.createElement('li');
-            li.textContent = `${obj.expanse} ${obj.description} ${obj.category}`;
+        // function showOnDisplay(obj) {
+        //     const users = document.getElementById('users');
+        //     const li = document.createElement('li');
+        //     li.textContent = `${obj.expanse} ${obj.description} ${obj.category}`;
 
-            const button = document.createElement('button');
-            // button.appendChild(document.createTextNode('delete'));
-            button.textContent = "Delete";
-            li.appendChild(button);
-            users.appendChild(li);
+        //     const button = document.createElement('button');
+        //     // button.appendChild(document.createTextNode('delete'));
+        //     button.textContent = "Delete";
+        //     li.appendChild(button);
+        //     users.appendChild(li);
 
-            const editBtn = document.createElement('button');
-            // button.appendChild(document.createTextNode('delete'));
-            editBtn.textContent = "Edit";
-            li.appendChild(editBtn);
-            users.appendChild(li);
+        //     const editBtn = document.createElement('button');
+        //     // button.appendChild(document.createTextNode('delete'));
+        //     editBtn.textContent = "Edit";
+        //     li.appendChild(editBtn);
+        //     users.appendChild(li);
 
-            button.onclick = () => {
-                localStorage.removeItem(obj.email);
-                users.removeChild(li);
-            }
+        //     button.onclick = () => {
+        //         localStorage.removeItem(obj.email);
+        //         users.removeChild(li);
+        //     }
 
-            editBtn.onclick = () => {
-                localStorage.removeItem(obj.email);
-                users.removeChild(li);
-                document.getElementById('expanse').value = obj.expanse;
-                document.getElementById('description').value = obj.description;
-                document.getElementById('category').value = obj.category
+        //     editBtn.onclick = () => {
+        //         localStorage.removeItem(obj.email);
+        //         users.removeChild(li);
+        //         document.getElementById('expanse').value = obj.expanse;
+        //         document.getElementById('description').value = obj.description;
+        //         document.getElementById('category').value = obj.category
 
-            }
+        //     }
 
 
-        }
+        // }
 
 
         // // trying to get the data from local storage;
