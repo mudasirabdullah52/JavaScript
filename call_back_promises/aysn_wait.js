@@ -127,11 +127,11 @@ const testUserForm = async () => {
     });
 
     const verifyUserDetails = () => {
-
+        return "form succfully uploaded"
     }
     await loadUserForm;
     await enterUserName;
-    verifyUserDetails();
+    const testResult = verifyUserDetails();
     return testResult;
 
 };
